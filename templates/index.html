@@ -1,16 +1,16 @@
 {% extends "base.html" %}
-{ % block title %}Home Page{ % endblock % }
+{% block title %}Home Page{% endblock %}
 {% block content %}
 <div class="container" >
-    <div class="col text-center">
+    <div class="col text-center mt-1">
         <p>
-            <button class="btn btn-light" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" left="50%">
+            <button class="btn btn-light" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                 Filter Options
             </button>
         </p>
     </div>
     <div class="collapse" id="collapseExample">
-        <div class="col text-center">
+        <div class="col text-center mb-1">
             <form method="POST" action="{{ url_for('motorFilter')}}">
                 {% for motor in  motors%}
                 <div class="form-check form-check-inline">
