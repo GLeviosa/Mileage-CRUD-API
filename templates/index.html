@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{ % block title %}Home Page{ % endblock % }
+{% block content %}
+<div class="container" >
+    <div class="col text-center">
+        <p>
+            <button class="btn btn-light" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" left="50%">
+                Filter Options
+            </button>
+        </p>
+    </div>
+    <div class="collapse" id="collapseExample">
+        <div class="col text-center">
+            <form method="POST" action="{{ url_for('motorFilter')}}">
+                {% for motor in  motors%}
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="options" id="inlineRadio1" value="{{motor}}">
+                    <label class="form-check-label" for="inlineRadio1">{{motor}}</label>
+                </div>
+                {% endfor %}
+                <button class="btn btn-primary" type="submit">Filtrar</button>
+            </form> 
+        </div>
+    </div>
+    <table class="table table-striped table-borded">
+        <thead>
+        <tr>
+            <th scope="col">Modelo</th>
+            <th scope="col">Máx Vel.</th>
+            <th scope="col">Motor</th>
+            <th scope="col">Marca</th>
+            <th scope="col">Opções</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for car in cars %}
+            <tr>
+                <td>{{car["modelo"]}}</td>
+                <td>{{car["velocidade_max"]}}</td>
+                <td>{{car["motor"]}}</td>
+                <td>{{car["marca"]}}</td>
+                <td>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <form method="GET" action="{{ url_for('edit')}}">
+                                <button type="submit" class="btn btn-info" name="modelo" value="{{car['modelo']}}">Edit</button>
+                            </form>
+                            <form method="POST" action="{{ url_for('deleteModel')}}">
+                                <button type="submit" class="btn btn-danger" name="modelo" value="{{car['modelo']}}">Del</button>
+                            </form>
+                        </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="col text-center">
+        <p>
+            <form method="GET" action="{{ url_for('add')}}">
+                <button class="btn btn-success" type="submit">Adicionar um carro!</button>
+            </form>            
+        </p>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{ % block title %}Home Page{ % endblock % }
+{% block content %}
+<div>
+    <form method="POST" action="{{ url_for('add')}}">
+        <div class="form-group">
+          <label for="formGroupExampleInput">Modelo</label>
+          <input type="text" class="form-control" name="modelo" placeholder="Insira o modelo aqui">
+        </div>
+        <div class="form-group">
+          <label for="formGroupExampleInput2">Velocidade Máxima</label>
+          <input type="text" class="form-control" name="velocidade_max" placeholder="Insira a velocidade máxima aqui">
+        </div>
+        <div class="form-group">
+            <label for="formGroupExampleInput2">Motor</label>
+            <input type="text" class="form-control" name="motor" placeholder="Insira o moto aqui">
+        </div>
+        <div class="form-group">
+            <label for="formGroupExampleInput2">Marca</label>
+            <input type="text" class="form-control" name="marca" placeholder="Insira a marca aqui">
+        </div>
+        <button type="submit" class="btn btn-primary">Confirmar</button>
+      </form>
+</div>
+{% endblock %}
