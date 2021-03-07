@@ -49,6 +49,8 @@ carros= [
 ]
 
 # INSIRA SEU CÓDIGO
+
+# Devolve uma lista de motores dos carros
 def getMotors(carros):
     motors = []
     for carro in carros:
@@ -58,11 +60,13 @@ def getMotors(carros):
 
     return motors
 
+# Rota da página inicial
 @app.route("/")
 def home():
     motores = getMotors(carros)
     return render_template("index.html", cars=carros, motors=motores)
 
+# Rora do filtro dos carros pelo motor selecionado
 @app.route("/motorFilter", methods=["POST"])
 def motorFilter():
     motores = getMotors(carros)
@@ -76,6 +80,7 @@ def motorFilter():
     else:
         return render_template("index.html", cars=carros, motors=motores)
 
+# Rora para deletar um modelo da lista
 @app.route("/deleteModel", methods=["POST"])
 def deleteModel():
     motores = getMotors(carros)
@@ -86,6 +91,7 @@ def deleteModel():
     
     return render_template("index.html", cars=carros, motors=motores)
 
+# Rota de edição do modelo
 @app.route("/edit", methods=["GET", "POST"])
 def edit():
     motores = getMotors(carros)
@@ -112,6 +118,7 @@ def edit():
 
         return render_template("index.html", cars=carros, motors=motores)
         
+# Rota para adicionar um modelo à lista
 @app.route("/add", methods=["GET", "POST"])
 def add():
     
@@ -131,16 +138,22 @@ def add():
             motores = getMotors(carros)
         return render_template("index.html", cars=carros, motors=motores)
 
+# Rota para a página de gráficos
 @app.route("/grafos")
 def grafos():
-    max = 0
+    motor_max = 0
+    vel_max = 0
     motors = getMotors(carros)
     
     for motor in motors:
-        if float(motor) > max:
-            max = float(motor)
+        if float(motor) > motor_max:
+            motor_max = float(motor)
     
-    return render_template("grafos.html", cars=carros, max=max)
+    for carro in carros:
+        if float(carro["velocidade_max"]) > vel_max:
+            vel_max = float(carro["velocidade_max"])
+    
+    return render_template("grafos.html", cars=carros, motor_max=motor_max, vel_max=vel_max)
 
 if __name__ == '__main__': 
     app.run(debug=True)
