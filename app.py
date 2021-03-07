@@ -121,7 +121,6 @@ def edit():
 # Rota para adicionar um modelo à lista
 @app.route("/add", methods=["GET", "POST"])
 def add():
-    
     if request.method == "GET":
 
         return render_template("add.html")
