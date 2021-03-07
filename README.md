@@ -11,4 +11,4 @@ Basta executar o seguinte comando na raiz do repositório:
 #### Linux/MacOS
 > python3 app.py
 
-Depois disso é só digitar http://localhost:5000/ ou http://127.0. 0.1:5000/ no seu browser :)
+Depois disso é só digitar http://localhost:5000/ ou http://127.0.0.1:5000/ no seu browser :)
