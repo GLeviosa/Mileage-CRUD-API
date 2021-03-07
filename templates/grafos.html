@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block script %}<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"> </script>{% endblock %}
+{% block title %}Gráficos{% endblock %}
+{% block content %}
+<div id="contain">
+    <div id="canvas-holder" style="background-color:#ffffff;width:50%;float: right;" \
+    class="col-xs-6">
+    <canvas id="myChart0" width="640" height="420" \
+    style=" float:left;margin-left:2em"></canvas></div>
+    <div id="canvas-holder" style="background-color:#ffffff;width:50%;float: right;" \
+    class="col-xs-6">
+    <canvas id="myChart1" width="640" height="420" \
+    style="float:left;margin-left:2em"></canvas></div>
+</div>
+
+<script>
+    let myChart0 = document.getElementById("myChart0").getContext("2d");
+    let myChart1 = document.getElementById("myChart1").getContext("2d");
+
+    let motors = new Chart(myChart0, {
+        type : 'bar',
+        data : {
+            labels : [
+            {% for car in cars %}
+            "{{car['modelo']}}",
+            {% endfor %}
+            ],
+            datasets : [{
+                label : "Motores",
+                barPercentage: 0.5,
+                barThickness: 6,
+                maxBarThickness: 8,
+                minBarLength: 2,
+                data : [
+                    {% for car in cars %}
+                    {{car['motor']}},
+                    {% endfor %}
+                ],
+                backgroundColor : 'rgba(255,179,25,0.8)',
+                borderWidth : 1,
+                borderColor : '#777',
+                hoverBorderWidth : 3,
+                hoverBorderColor : '#000'
+            }]
+        },
+        options : {
+            scales: {
+                yAxes: [{
+                ticks: {
+                    beginAtZero : true,
+                    suggestedMax : {{max + 0.1}}
+                }
+                }]
+            }
+        }
+    });
+
+    let velocidades = new Chart(myChart1, {
+        type : 'bar',
+        data : {
+            labels : [
+            {% for car in cars %}
+            "{{car['modelo']}}",
+            {% endfor %}
+            ],
+            datasets : [{
+                label : "Velocidades",
+                barPercentage: 0.5,
+                barThickness: 6,
+                maxBarThickness: 8,
+                minBarLength: 2,
+                data : [
+                    {% for car in cars %}
+                    {{car['velocidade_max']}},
+                    {% endfor %}
+                ],
+                backgroundColor : 'rgba(230,38,0,0.8)',
+                borderWidth : 1,
+                borderColor : '#777',
+                hoverBorderWidth : 3,
+                hoverBorderColor : '#000'
+            }]
+        },
+        options : {
+            scales: {
+                yAxes: [{
+                ticks: {
+                    beginAtZero : true,
+                    suggestedMax : {{max}}
+                }
+                }]
+            }
+        }
+    });
+
+</script>
+{% endblock %}

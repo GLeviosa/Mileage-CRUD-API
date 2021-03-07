@@ -72,10 +72,9 @@ def motorFilter():
         for carro in carros:
             if motor == carro["motor"]:
                 filtered.append(carro)
+        return render_template("index.html", cars=filtered, motors=motores)
     else:
-        filtered = carros
-    
-    return render_template("index.html", cars=filtered, motors=motores)
+        return render_template("index.html", cars=carros, motors=motores)
 
 @app.route("/deleteModel", methods=["POST"])
 def deleteModel():
@@ -131,6 +130,17 @@ def add():
             carros.append(newCar)
             motores = getMotors(carros)
         return render_template("index.html", cars=carros, motors=motores)
+
+@app.route("/grafos")
+def grafos():
+    max = 0
+    motors = getMotors(carros)
     
+    for motor in motors:
+        if float(motor) > max:
+            max = float(motor)
+    
+    return render_template("grafos.html", cars=carros, max=max)
+
 if __name__ == '__main__': 
     app.run(debug=True)

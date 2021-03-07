@@ -1,9 +1,11 @@
 <!doctype html>
 <html>
 <head>
+    <meta charset="utf-8" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% block script %}{% endblock %}
     <title>{% block title %}{% endblock %}</title>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-1">
         <a class="navbar-brand" href="https://www.facebook.com/inspermileage/">
             <img src="https://avatars.githubusercontent.com/u/47462577?s=200&v=4" width="50" height="50">
         </a>
@@ -11,8 +13,9 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
+          <div class="navbar-nav ">
             <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="/grafos">Gráficos</a>
             <a class="nav-item nav-link" href="https://www.insper.edu.br/">Insper</a>
             <a class="nav-item nav-link" href="https://github.com/GLeviosa">Github</a>
           </div>

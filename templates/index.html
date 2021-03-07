@@ -2,7 +2,7 @@
 {% block title %}Home Page{% endblock %}
 {% block content %}
 <div class="container" >
-    <div class="col text-center mt-1">
+    <div class="col text-center">
         <p>
             <button class="btn btn-light" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                 Filter Options
@@ -26,9 +26,9 @@
         <thead>
         <tr>
             <th scope="col">Modelo</th>
-            <th scope="col">Máx Vel.</th>
-            <th scope="col">Motor</th>
             <th scope="col">Marca</th>
+            <th scope="col">Motor</th>
+            <th scope="col">Máx Vel.</th>
             <th scope="col">Opções</th>
         </tr>
         </thead>
@@ -36,9 +36,9 @@
             {% for car in cars %}
             <tr>
                 <td>{{car["modelo"]}}</td>
-                <td>{{car["velocidade_max"]}}</td>
-                <td>{{car["motor"]}}</td>
                 <td>{{car["marca"]}}</td>
+                <td>{{car["motor"]}}</td>
+                <td>{{car["velocidade_max"]}}</td>
                 <td>
                         <div class="btn-group" role="group" aria-label="Basic example">
                             <form method="GET" action="{{ url_for('edit')}}">
