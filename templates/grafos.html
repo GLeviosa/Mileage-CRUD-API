@@ -48,9 +48,18 @@
                 yAxes: [{
                 ticks: {
                     beginAtZero : true,
-                    suggestedMax : {{max + 0.1}}
+                    suggestedMax : {{motor_max + 0.2}},
+                    stepSize : 0.2
                 }
                 }]
+            },
+            title : {
+                display : true,
+                text : "Motores",
+                fontSize : 25
+            },
+            legend : {
+                display : false
             }
         }
     });
@@ -82,13 +91,22 @@
             }]
         },
         options : {
-            scales: {
-                yAxes: [{
-                ticks: {
+            scales : {
+                yAxes : [{
+                ticks : {
                     beginAtZero : true,
-                    suggestedMax : {{max}}
+                    suggestedMax : {{vel_max + 20}},
+                    stepSize : 20
                 }
                 }]
+            },
+            title : {
+                display : true,
+                text : "Velocidades",
+                fontSize : 25
+            },
+            legend : {
+                display : false
             }
         }
     });
